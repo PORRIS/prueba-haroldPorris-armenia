@@ -1,0 +1,576 @@
+---
+openapi: 3.0.0
+info:
+  title: laravel-test-api
+  description: API para prueba en laravel
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/PORRIS/test_laravel/1.0.0
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: Referencias
+  description: Datos referenciales
+- name: Actividades
+  description: Crud actividades
+paths:
+  /reference/expertises:
+    get:
+      tags:
+      - Referencias
+      description: Retorna todas las Experticias
+      operationId: getExperticias
+      parameters:
+      - name: search
+        in: query
+        description: buscar Experticias por descripción
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Operacion exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experticia'
+  /reference/expertises/{id_expertise}:
+    get:
+      tags:
+      - Referencias
+      description: Retorna una sola Experticia
+      operationId: getExperticiasId
+      parameters:
+      - name: id_expertise
+        in: path
+        description: id de la experticia necesaria para consultar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 1
+      responses:
+        "200":
+          description: Operacion exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExperticiaId'
+  /reference/cultural:
+    get:
+      tags:
+      - Referencias
+      description: Retorna todos los Derechos culturales
+      operationId: getcultural
+      parameters:
+      - name: search
+        in: query
+        description: buscar Derechos culturales por descripción
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Operacion exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experticia'
+  /reference/cultural/{id}:
+    get:
+      tags:
+      - Referencias
+      description: Retorna un solo derecho cultural
+      operationId: getculturalId
+      parameters:
+      - name: id
+        in: path
+        description: id del derecho cultural necesario para consultar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 1
+      responses:
+        "200":
+          description: Operacion exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExperticiaId'
+  /reference/nacs:
+    get:
+      tags:
+      - Referencias
+      description: Retorna todos los Nacs
+      operationId: getnacs
+      parameters:
+      - name: search
+        in: query
+        description: buscar Nacs por descripción
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Operacion exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experticia'
+  /reference/nacs/{id}:
+    get:
+      tags:
+      - Referencias
+      description: Retorna un solo nac
+      operationId: getnacsId
+      parameters:
+      - name: id
+        in: path
+        description: id del nacs necesario para consultar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 1
+      responses:
+        "200":
+          description: Operacion exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExperticiaId'
+  /activity:
+    get:
+      tags:
+      - Actividades
+      summary: consulta todas las actividad
+      description: consulta toda las actividades con paginacion de tipo cursor
+      operationId: getallActividad
+      parameters:
+      - name: cursor
+        in: query
+        description: cursor de paginación
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "422":
+          description: Error de validacion de alguno de los campos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actividad_422'
+        "200":
+          description: Operacion Exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actividad_all'
+    post:
+      tags:
+      - Actividades
+      summary: Crea una actividad
+      description: crea una actividad con un objeto JSON
+      operationId: crearActividad
+      requestBody:
+        $ref: '#/components/requestBodies/Actividad'
+      responses:
+        "422":
+          description: Error de validacion de alguno de los campos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actividad_422'
+        "200":
+          description: Operacion Exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actividad_200'
+  /activity/{id}:
+    get:
+      tags:
+      - Actividades
+      summary: consulta una actividad
+      description: consulta una actividad por Id
+      operationId: getActividad
+      parameters:
+      - name: id
+        in: path
+        description: id de la actividad a consultar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 1
+      responses:
+        "422":
+          description: Error de validacion de alguno de los campos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actividad_422'
+        "200":
+          description: Operacion Exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actividad_get'
+    put:
+      tags:
+      - Actividades
+      summary: Actualiza una actividad
+      description: Actualiza una actividad con un objeto JSON
+      operationId: updateActividad
+      parameters:
+      - name: id
+        in: path
+        description: id de la actividad para actualizar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 1
+      requestBody:
+        $ref: '#/components/requestBodies/Actividad'
+      responses:
+        "422":
+          description: Error de validacion de alguno de los campos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actividad_422'
+        "200":
+          description: Operacion Exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actividad_200'
+    delete:
+      tags:
+      - Actividades
+      summary: Elimina una actividad
+      description: Elimina una actividad por Id
+      operationId: deleteeActividad
+      parameters:
+      - name: id
+        in: path
+        description: id de la actividad para eliminar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 1
+      responses:
+        "422":
+          description: Error de validacion de alguno de los campos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actividad_422'
+        "200":
+          description: Operacion Exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actividad_200'
+  /activity/{id}/restore:
+    put:
+      tags:
+      - Actividades
+      summary: Restaura una actividad eliminada
+      description: Restaura una actividad eliminada por id
+      operationId: restoreActividad
+      parameters:
+      - name: id
+        in: path
+        description: id de la actividad a restaurar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 1
+      requestBody:
+        $ref: '#/components/requestBodies/Actividad'
+      responses:
+        "422":
+          description: Error de validacion de alguno de los campos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actividad_422'
+        "200":
+          description: Operacion Exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actividad_200'
+components:
+  schemas:
+    Experticia:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Experticia_data'
+        path:
+          type: string
+          example: /api/reference/expertises
+        per_page:
+          type: integer
+          example: 10
+        next_cursor:
+          type: string
+        next_page_url:
+          type: string
+        prev_cursor:
+          type: string
+        prev_page_url:
+          type: string
+        status:
+          type: boolean
+          example: true
+        code:
+          type: integer
+          example: 200
+        message:
+          type: string
+          example: Datos encontrados
+      xml:
+        name: Modalidades
+    ExperticiaId:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExperticiaId_data'
+        code:
+          type: integer
+          example: 200
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: Dato encontrada
+    Actividad:
+      required:
+      - activity_date
+      - activity_name
+      - cultural_rights
+      - expertise_id
+      - final_hour
+      - nac_id
+      - start_time
+      type: object
+      properties:
+        activity_name:
+          type: string
+          example: NOMBRE ACTIVIDAD
+        activity_date:
+          type: string
+          example: 2022-12-03
+        start_time:
+          type: string
+          example: 1:01 AM
+        final_hour:
+          type: string
+          example: 2:30 AM
+        cultural_rights:
+          type: integer
+          example: 2
+        nac_id:
+          type: integer
+          example: 3
+        expertise_id:
+          type: integer
+          example: 4
+      xml:
+        name: Glosa
+    Actividad_422:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: El campo XXX es inválido
+        code:
+          type: integer
+          example: 422
+        data:
+          type: array
+          items:
+            type: object
+    Actividad_200:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: Paquete (Creado - Actualizado  - Eliminado - Restaurada) con exito.
+        code:
+          type: integer
+          example: 200
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Actividad_200_data'
+    Actividad_get:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: Datos consultados correctamente.
+        code:
+          type: integer
+          example: 200
+        data:
+          type: array
+          items:
+            type: object
+            example:
+              data:
+                id: 1
+                consecutive: F1
+                activity_name: actividad test
+                cultural_right_id: 1
+                nac_id: 2
+                activity_date: 2020-01-20
+                start_time: 1:01 AM
+                final_hour: 1:02 PM
+                expertise_id: 2
+                created_at: 2022-12-04 02:17:15
+                updated_at: 2022-12-04 03:16:31
+                cultural:
+                  id: 1
+                  description: IDENTIDAD Y PATRIMONIOS CULTURALES
+                nac:
+                  id: 2
+                  description: ANDALUCÍA
+                expertise:
+                  id: 2
+                  description: TEATRO
+              code: 200
+              status: true
+              message: Actividad encontrada
+    Actividad_all:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: Datos consultados correctamente.
+        code:
+          type: integer
+          example: 200
+        data:
+          type: array
+          items:
+            type: object
+            example:
+              data:
+              - id: 1
+                consecutive: F1
+                activity_name: actividad test
+                cultural_right_id: 1
+                nac_id: 2
+                activity_date: 2020-01-20
+                start_time: 1:01 AM
+                final_hour: 1:02 PM
+                expertise_id: 2
+                created_at: 2022-12-04 02:17:15
+                updated_at: 2022-12-04 03:16:31
+                cultural:
+                  id: 1
+                  description: IDENTIDAD Y PATRIMONIOS CULTURALES
+                nac:
+                  id: 2
+                  description: ANDALUCÍA
+                expertise:
+                  id: 2
+                  description: TEATRO
+              - id: 2
+                consecutive: F2
+                activity_name: actividad test
+                cultural_right_id: 1
+                nac_id: 2
+                activity_date: 2020-01-20
+                start_time: 11:01 AM
+                final_hour: 12:01 PM
+                expertise_id: 2
+                created_at: 2022-12-04 02:19:11
+                updated_at: 2022-12-04 03:28:10
+                cultural:
+                  id: 1
+                  description: IDENTIDAD Y PATRIMONIOS CULTURALES
+                nac:
+                  id: 2
+                  description: ANDALUCÍA
+                expertise:
+                  id: 2
+                  description: TEATRO
+              path: /api/activity
+              per_page: 10
+              next_cursor: eyJpZCI6MjIsIl9wb2ludHNUb05leHRJdGVtcyI6dHJ1ZX0
+              next_page_url: /api/activity?cursor=eyJpZCI6MjIsIl9wb2ludHNUb05leHRJdGVtcyI6dHJ1ZX0
+              status: true
+              code: 200
+              message: Actividades encontradas
+    Experticia_data:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        text:
+          type: string
+          example: TEXTO DATO
+    ExperticiaId_data:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2
+        text:
+          type: string
+          example: TEXTO DATO
+    Actividad_200_data:
+      type: object
+      properties:
+        activity_id:
+          type: integer
+          example: 5
+  requestBodies:
+    Actividad:
+      description: Objeto Actividad necesario para crear - actualizar un registro
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Actividad'
+      required: true
