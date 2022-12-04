@@ -16,7 +16,7 @@ class ReferenceNacs extends Model
     public function scopeSearch($query, $search)
     {
         if ($search) {
-            return $query->whereRaw("description ilike '%".$search."%'" );
+            return $query->whereRaw("description like '%".$search."%'" );
         }
     }
 }
