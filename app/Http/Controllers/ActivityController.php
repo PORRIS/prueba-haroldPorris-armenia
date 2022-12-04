@@ -7,12 +7,13 @@ use App\Http\Requests\SearchIdActivityRequest;
 use App\Http\Requests\SearchIdActivityRestoreRequest;
 use App\Http\Requests\UpdateActivityRequest;
 use App\Repositories\Implementations\ActivityRepository;
+use App\Repositories\Interfaces\ActivityInterface;
 use Illuminate\Http\Request;
 
 class ActivityController extends ApiController
 {
     private $activity;
-    public function __construct(  ActivityRepository $activity  )
+    public function __construct(  ActivityInterface $activity  )
     {
         $this->activity = $activity;
     }

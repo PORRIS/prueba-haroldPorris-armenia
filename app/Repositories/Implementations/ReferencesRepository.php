@@ -7,12 +7,13 @@ namespace App\Repositories\Implementations;
 use App\Models\ReferenceCulturalRights;
 use App\Models\ReferenceExpertises;
 use App\Models\ReferenceNacs;
+use App\Repositories\Interfaces\ReferencesInterfaces;
 use App\Utilities\Resources;
 use Exception;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Log;
 
-class ReferencesRepository
+class ReferencesRepository implements ReferencesInterfaces
 {
     /**
      * @param $search

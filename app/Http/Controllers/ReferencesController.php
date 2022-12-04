@@ -7,13 +7,14 @@ use App\Http\Requests\SearchIdExpertiseRequest;
 use App\Http\Requests\SearchIdNacRequest;
 use App\Http\Requests\SearchRequest;
 use App\Repositories\Implementations\ReferencesRepository;
+use App\Repositories\Interfaces\ReferencesInterfaces;
 use App\Utilities\Resources;
 use Illuminate\Support\Facades\Cache;
 
 class ReferencesController extends ApiController
 {
     private $references;
-    public function __construct(  ReferencesRepository $references  )
+    public function __construct(  ReferencesInterfaces $references  )
     {
         $this->references = $references;
     }

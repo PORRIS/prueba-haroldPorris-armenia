@@ -4,13 +4,14 @@
 namespace App\Repositories\Implementations;
 
 use App\Models\Activity;
+use App\Repositories\Interfaces\ActivityInterface;
 use App\Utilities\Resources;
 use Exception;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
-class ActivityRepository
+class ActivityRepository implements ActivityInterface
 {
     /**
      * @param Request $request
